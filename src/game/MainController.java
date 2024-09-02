@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
-public class Main_Controller {
+public class MainController {
 
     @FXML
     private ResourceBundle resources;
@@ -22,4 +22,5 @@ public class Main_Controller {
 
     }
 
+    
 }
