@@ -1,4 +1,4 @@
-package game;
+package game.Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +18,8 @@ public class MainController {
 
     @FXML
     void initialize() {
-        assert field != null : "fx:id=\"field\" was not injected: check your FXML file 'game.fxml'.";
+        assert field != null : "fx:id=\"field\" was not injected: check your FXML file 'field.fxml'.";
 
     }
 
-    
 }

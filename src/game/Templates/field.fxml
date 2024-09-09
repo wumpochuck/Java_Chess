@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<ImageView fx:id="field" fitHeight="512.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.Controllers.MainController">
+   <image>
+      <Image url="@../assets/field.png" />
+   </image>
+</ImageView>
