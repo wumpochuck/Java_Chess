@@ -43,9 +43,9 @@ public class Pawn extends Figure {
         return possibleMoves;
     }
  
-    public ImageView createPawnImageView(){
+    public void createPawnImageView(){
         ImageView pawnNode = new ImageView();
-        pawnNode.setId("pawn,"+ getPos_x() + "," + getPos_y());
+        pawnNode.setId("pawn_" + getColor() + "_" + getPos_x() + "_" + getPos_y());
         
         // Add pawn coordinates
         pawnNode.setLayoutX(getPos_x() * 64);
@@ -56,7 +56,13 @@ public class Pawn extends Figure {
         pawnNode.setFitHeight(64);
         pawnNode.setFitWidth(64);
 
-        return pawnNode;
+        // Add event on mouse click
+        pawnNode.setOnMouseClicked(e -> {
+            System.out.println("Clicked on pawn: " + pawnNode.getId());
+        });
+
+
+        this.figureNode = pawnNode;
     }
 
 }
