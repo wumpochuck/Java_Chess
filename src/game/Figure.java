@@ -2,7 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class Figure {
 
@@ -10,15 +12,15 @@ public class Figure {
     private int pos_y;
 
     private String color;
-    private ArrayList <String> possibleMoves;
+    private ArrayList<String> possibleMoves;
 
-    ImageView figureNode;
+    AnchorPane figureNode;
 
     public Figure(int pos_x, int pos_y, String color) {
         this.pos_x = pos_x;
         this.pos_y = pos_y;
         this.color = color;
-        this.possibleMoves = new ArrayList <String>();
+        this.possibleMoves = new ArrayList<String>();
     }
 
     // Getters, Setters
@@ -47,20 +49,36 @@ public class Figure {
         this.color = color;
     }
 
-    public ArrayList <String> getPossibleMoves() {
+    public ArrayList<String> getPossibleMoves() {
         return possibleMoves;
     }
 
-    public void setPossibleMoves(ArrayList <String> possibleMoves) {
+    public void setPossibleMoves(ArrayList<String> possibleMoves) {
         this.possibleMoves = possibleMoves;
     }
 
-    public ImageView getFigureNode() {
+    public AnchorPane getFigureNode() {
         return figureNode;
     }
 
-    public void setFigureNode(ImageView figureNode) {
+    public void setFigureNode(AnchorPane figureNode) {
         this.figureNode = figureNode;
+    }
+
+    public ImageView createMoveImage(int posX, int posY) {
+        ImageView image = new ImageView();
+        image.setImage(new Image("file:src/game/assets/move.png"));
+        image.setFitHeight(64);
+        image.setFitWidth(64);
+
+        image.setId("m_" + posX + "_" + posY); // move
+
+        image.setLayoutX(posX * 64);
+        image.setLayoutY(posY * 64);
+
+        image.setVisible(false);
+
+        return image;
     }
 
 }
