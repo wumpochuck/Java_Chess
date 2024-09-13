@@ -25,8 +25,11 @@ public class MainController {
     @FXML
     private ImageView fieldImage;
 
-    private ArrayList <Pawn> figureList = new ArrayList<>();
-    
+    // Constants for processing choice
+    private ArrayList<Pawn> figureList = new ArrayList<>();
+    private String currentNodeName = "";
+    private String currentMove = "first";
+
     @FXML
     void initialize() {
         assert field != null : "fx:id=\"field\" was not injected: check your FXML file 'field.fxml'.";
@@ -34,18 +37,38 @@ public class MainController {
 
         addFigures();
 
-        // Constants for processing choice
-        String currentNodeName = "";
-        String currentMove = "first";
 
         // On field clicked event
         field.setOnMouseClicked(e -> {
+            System.out.println(e.getTarget()); // Норм метод 
             // Get click coordinates
             int mousePosX = (int) (e.getX() / 64);
             int mousePosY = (int) (e.getY() / 64);
-
             System.out.println("Нажал на поле!, координаты: " + mousePosX + "," + mousePosY);
+
+            for(int i = 0; i < figureList.size(); i++){
+                String nodeName = figureList.get(i).getName();
+                int nodePosX = figureList.get(i).getPos_x();
+                int nodePosY = figureList.get(i).getPos_y();
+
+                // If first figure chosen
+                if(nodePosX == mousePosX && nodePosY == mousePosY && currentNodeName.equals("")){
+                    System.out.println("Нажал на ноду " + nodeName);
+                    clearMoves();
+                    figureList.get(i).setSwitchMovesVisible("true");
+                    break;
+                }
+                // If click on empty path of field
+                else{
+                    clearMoves();
+                }
+
+
+            }
+
+            /*
             ObservableList<Node> nodeArray = field.getChildren(); // Можно обойтись без этого (ПОДУМАТЬ)
+            // Как нибудь заменить через figureList
             for (int i = 0; i < nodeArray.size(); i++) {
                 String nodeName = nodeArray.get(i).getId();
                 int nodePosX = Character.getNumericValue(nodeName.charAt(0));
@@ -53,24 +76,32 @@ public class MainController {
 
                 // If any figure chosen
                 if (nodePosX == mousePosX && nodePosY == mousePosY && currentNodeName.equals("")) {
-                    
+
+                    clearMoves();
+
                     System.out.println("Выбрана нода: " + nodeName);
-                    for(int j = 0; j < figureList.size(); j++){
-                        if(figureList.get(j).getFigureNode().getId().equals(nodeName)){
+                    for (int j = 0; j < figureList.size(); j++) {
+                        if (figureList.get(j).getFigureNode().getId().equals(nodeName)) {
                             figureList.get(j).setSwitchMovesVisible("true");
                         }
                     }
+                    break;
                 }
                 // If nothing chosen
-                else{
-                    for(int j = 0; j < figureList.size(); j++){
-                            figureList.get(j).setSwitchMovesVisible("false");
-                    }
+                else {
+                    clearMoves();
                 }
             }
+            */
 
         });
 
+    }
+
+    public void clearMoves() {
+        for (int j = 0; j < figureList.size(); j++) {
+            figureList.get(j).setSwitchMovesVisible("false");
+        }
     }
 
     public void addFigures() {

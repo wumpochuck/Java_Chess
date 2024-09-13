@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class Figure {
 
+    private String name;
+
     private int pos_x;
     private int pos_y;
 
@@ -63,6 +65,14 @@ public class Figure {
 
     public void setFigureNode(AnchorPane figureNode) {
         this.figureNode = figureNode;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public ImageView createMoveImage(int posX, int posY) {

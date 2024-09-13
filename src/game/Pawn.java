@@ -49,6 +49,9 @@ public class Pawn extends Figure {
         AnchorPane pawnNode = new AnchorPane();
         pawnNode.setId(getPos_x() + "_" + getPos_y() + "_pawn_" + getColor());
 
+        // Add name to class
+        setName(pawnNode.getId());
+
         // Set pawn coordinates
         pawnNode.setLayoutX(getPos_x() * 64);
         pawnNode.setLayoutY(getPos_y() * 64);
